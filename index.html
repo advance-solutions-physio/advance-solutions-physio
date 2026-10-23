@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Advance Solutions Physiotherapy Centre, owned and operated by Dr. Meena Agrawal, Consultant Physiotherapist in Indore.">
+<title>Dr. Meena Agrawal — Advance Solutions Physiotherapy Centre</title>
+<style>
+:root {
+  --site-primary: #173D35;
+  --site-secondary: #E7EFE9;
+  --site-background: #F7F6F1;
+  --site-on-primary: #FFFFFF;
+  --site-on-secondary: #183B32;
+  --site-on-background: #182A25;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --ink-soft: #60716A;
+  --line: #DCE4DE;
+  --accent: #C7E06B;
+  --surface: #FFFFFF;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: light-dark(var(--site-background), #101A17); color: light-dark(var(--site-on-background), #F2F6F3); }
+.site-root { min-height: 100vh; width: 100%; border-radius: 0; overflow: hidden; background-color: var(--site-background); color: var(--site-on-background); position: relative; }
+a { color: inherit; }
+.container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: calc(24px * var(--site-spacing-scale)) 0; }
+.brand { display: flex; gap: 11px; align-items: center; font-weight: 800; letter-spacing: -.04em; }
+.brand-mark { width: 38px; height: 38px; border-radius: 12px; background: var(--site-primary); color: var(--site-on-primary); display: grid; place-items: center; font-size: 18px; }
+.nav { display: flex; align-items: center; gap: 28px; font-size: 13px; color: var(--ink-soft); }
+.nav a { text-decoration: none; }
+.nav a:hover { color: var(--site-primary); }
+.nav .nav-cta { padding: 11px 16px; border: 1px solid var(--line); border-radius: 999px; color: var(--site-on-background); }
+.hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; padding: 78px 0 88px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #547064; }
+.eyebrow:before { content: ''; display: block; width: 24px; height: 2px; background: #9AB85D; }
+h1,h2,h3,p { margin-top: 0; }
+h1 { font-family: var(--site-font-heading); font-size: clamp(46px, 6vw, 76px); line-height: .99; letter-spacing: -.065em; font-weight: 750; margin: 23px 0; max-width: 700px; }
+h1 span { color: #66856D; }
+.hero-copy { max-width: 550px; font-size: 17px; line-height: 1.8; color: var(--ink-soft); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; text-decoration: none; border-radius: 999px; padding: 14px 20px; font-size: 13px; font-weight: 750; transition: transform .2s, background .2s; }
+.button:hover { transform: translateY(-2px); }
+.button-primary { background: var(--site-primary); color: var(--site-on-primary); }
+.button-secondary { border: 1px solid var(--line); background: rgba(255,255,255,.55); color: var(--site-on-background); }
+.hero-art { min-height: 380px; position: relative; display: grid; place-items: center; }
+.art-card { position: relative; width: min(100%, 360px); aspect-ratio: .86; background: #DDE8D9; border-radius: calc(28px * var(--site-radius-scale)); overflow: hidden; padding: 24px; box-shadow: 0 30px 80px rgba(26,59,45,.13); }
+.art-circle { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: #B8D0A9; top: 45px; left: 50%; transform: translateX(-50%); }
+.service-visuals { position: absolute; inset: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: center; }
+.service-visual { min-height: 112px; border: 1px solid rgba(23,61,53,.12); border-radius: 18px; background: rgba(255,255,255,.78); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; text-align: center; color: var(--site-primary); padding: 12px 8px; }
+.service-visual span { font-size: 30px; line-height: 1; }
+.service-visual strong { font-size: 11px; line-height: 1.35; }
+.art-label { position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(255,255,255,.88); backdrop-filter: blur(12px); border-radius: 15px; padding: 15px 17px; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+.art-label strong { display: block; font-size: 14px; }
+.art-label small { display: block; margin-top: 4px; color: var(--ink-soft); font-size: 11px; }
+.art-label .status { width: 10px; height: 10px; background: #78A85B; border-radius: 50%; box-shadow: 0 0 0 5px #E3EEDC; }
+.float-tag { position: absolute; right: -5px; top: 35px; background: var(--site-primary); color: white; border-radius: 13px; padding: 13px 16px; font-size: 11px; font-weight: 700; box-shadow: 0 14px 30px rgba(23,61,53,.16); }
+.float-tag b { color: var(--accent); font-size: 18px; display: block; margin-bottom: 2px; }
+.section { padding: 82px 0; }
+.section-light { background: var(--surface); }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px; }
+.section-head h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -.05em; margin: 12px 0 0; }
+.section-head p { max-width: 400px; color: var(--ink-soft); line-height: 1.7; margin: 0; font-size: 14px; }
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+.about-aside { padding: 27px; border-radius: calc(22px * var(--site-radius-scale)); background: var(--site-secondary); }
+.about-aside .big-number { font-size: 48px; letter-spacing: -.06em; font-weight: 800; color: var(--site-primary); }
+.about-aside p { color: #557066; font-size: 13px; line-height: 1.65; margin: 8px 0 22px; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { border: 1px solid #D5E1D6; border-radius: 999px; padding: 8px 11px; font-size: 11px; color: #496157; background: rgba(255,255,255,.45); }
+.about-text { font-size: 16px; line-height: 1.9; color: var(--ink-soft); }
+.about-text strong { color: var(--site-on-background); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.info-card { padding: 26px; border: 1px solid var(--line); border-radius: calc(20px * var(--site-radius-scale)); background: #FEFFFD; }
+.card-icon { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--site-secondary); color: var(--site-primary); font-size: 19px; margin-bottom: 26px; }
+.info-card h3 { font-size: 17px; letter-spacing: -.03em; margin-bottom: 10px; }
+.info-card p { color: var(--ink-soft); font-size: 13px; line-height: 1.75; margin-bottom: 0; }
+.contact-band { background: var(--site-primary); color: var(--site-on-primary); border-radius: calc(26px * var(--site-radius-scale)); padding: 44px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.contact-band h2 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -.05em; margin: 13px 0 10px; }
+.contact-band p { color: #D3E2DA; margin: 0; line-height: 1.7; max-width: 520px; font-size: 14px; }
+.contact-band .eyebrow { color: #D0E0D5; }
+.contact-band .button { background: var(--accent); color: #183B32; white-space: nowrap; }
+.contact-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.contact-item { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 19px; }
+.contact-item small { display: block; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; font-weight: 800; margin-bottom: 9px; }
+.contact-item a, .contact-item span { font-size: 13px; text-decoration: none; overflow-wrap: anywhere; }
+.footer { padding: 26px 0 34px; display: flex; align-items: center; justify-content: space-between; color: var(--ink-soft); font-size: 11px; gap: 20px; }
+.footer a { text-decoration: none; }
+.edit-note { margin: 20px auto 0; padding: 12px 15px; border: 1px dashed #A8BDAA; border-radius: 12px; font-size: 12px; color: #4E695B; background: #F0F5EC; line-height: 1.6; }
+@media (max-width: 760px) {
+ .container { width: min(100% - 32px, 560px); }
+ .topbar { padding: 18px 0; }
+ .nav { gap: 14px; }
+ .nav a:not(.nav-cta) { display: none; }
+ .nav .nav-cta { padding: 10px 13px; }
+ .hero { grid-template-columns: 1fr; gap: 20px; padding: 52px 0 60px; }
+ .hero-art { min-height: 330px; }
+ .art-card { width: min(84%, 320px); }
+ .service-visual { min-height: 95px; }
+ .float-tag { right: 2px; }
+ .section { padding: 60px 0; }
+ .section-head { align-items: start; flex-direction: column; gap: 12px; }
+ .about-grid { grid-template-columns: 1fr; gap: 22px; }
+ .cards { grid-template-columns: 1fr; }
+ .info-card { padding: 23px; }
+ .contact-band { padding: 28px; align-items: start; flex-direction: column; }
+ .contact-details { grid-template-columns: 1fr; }
+ .footer { align-items: start; flex-direction: column; }
+}
+@media (prefers-color-scheme: dark) {
+ :root { --site-background: #101A17; --site-secondary: #20372F; --site-on-background: #F2F6F3; --ink-soft: #B0C0B7; --line: #31463D; --surface: #17231E; }
+ .section-light, .info-card, .contact-item { background: var(--surface); }
+ .button-secondary { background: #20332B; }
+ .about-aside p, .pill { color: #C4D7CB; }
+ .pill { border-color: #3C5849; }
+ .art-label { background: rgba(250,253,248,.9); color: #182A25; }
+ .edit-note { background: #20372F; color: #D1E4D6; border-color: #456B53; }
+}
+</style>
+</head>
+<body>
+<div class="site-root" id="top">
+  <header class="container topbar">
+    <a class="brand" href="#top" aria-label="Advance Solutions Physiotherapy Centre home" style="text-decoration:none"><span class="brand-mark">AS</span><span>ADVANCE SOLUTIONS<span style="color:#78936E">.</span></span></a>
+    <nav class="nav" aria-label="Main navigation"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#contact" class="nav-cta">Let's connect ↗</a></nav>
+  </header>
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="eyebrow">Professional profile</div>
+        <h1>Move better.<br><span>Live with confidence.</span></h1>
+        <p class="hero-copy">Welcome to <strong>Advance Solutions Physiotherapy Centre</strong>, owned and operated by <strong>Dr. Meena Agrawal, Consultant Physiotherapist</strong>. With over 12 years of professional experience, Dr. Meena combines time-tested physiotherapy approaches with modern techniques to support patient care.</p>
+        <div class="actions"><a class="button button-primary" href="#contact">Get in touch <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="#about">Explore my profile ↓</a></div>
+        <div class="edit-note"><strong>Website preview:</strong> This page introduces the centre and its physiotherapy expertise. Confirm the centre address and service details before publishing.</div>
+      </div>
+      <div class="hero-art" aria-label="Physiotherapy services illustration">
+        <div class="art-card"><div class="art-circle"></div><div class="service-visuals"><div class="service-visual"><span>〰</span><strong>Manual Therapy</strong></div><div class="service-visual"><span>✳</span><strong>Dry Needling</strong></div><div class="service-visual"><span>◉</span><strong>Cupping Therapy</strong></div><div class="service-visual"><span>↗</span><strong>Taping Therapy</strong></div></div></div>
+        <div class="float-tag"><b>12+ Years</b>Physiotherapy Experience</div>
+      </div>
+    </section>
+    <section class="section section-light" id="about"><div class="container">
+      <div class="section-head"><div><div class="eyebrow">About the centre</div><h2>Experienced care.<br>Thoughtful treatment.</h2></div><p>Physiotherapy care shaped by over 12 years of professional experience and an approach that values both established practice and modern techniques.</p></div>
+      <div class="about-grid"><aside class="about-aside"><div class="big-number">12+<span style="color:#90AE65">.</span></div><p>Years of professional physiotherapy experience, bringing together time-tested approaches and modern techniques.</p><div class="pill-row"><span class="pill">Patient-focused care</span><span class="pill">Experienced practice</span><span class="pill">Modern techniques</span></div></aside>
+      <div class="about-text"><p><strong>Advance Solutions Physiotherapy Centre</strong> is owned and operated by <strong>Dr. Meena Agrawal, Consultant Physiotherapist</strong>.</p><p>With more than 12 years of professional experience treating patients, Dr. Meena incorporates both traditional, time-tested approaches and modern advanced physiotherapy techniques. The aim is to provide thoughtful care based on each patient's needs.</p></div></div>
+    </div></section>
+    <section class="section" id="expertise"><div class="container"><div class="section-head"><div><div class="eyebrow">Our approach</div><h2>Physiotherapy expertise</h2></div><p>A patient-focused approach combining professional experience with established and modern physiotherapy techniques.</p></div>
+      <div class="cards"><article class="info-card"><div class="card-icon">✳</div><h3>Dry Needling & Cupping</h3><p>Focused treatment options offered as part of the centre's physiotherapy services.</p></article><article class="info-card"><div class="card-icon">↗</div><h3>Taping & Manual Therapy</h3><p>Hands-on care and taping techniques selected according to individual assessment.</p></article><article class="info-card"><div class="card-icon">◎</div><h3>Rehabilitation Care</h3><p>Physiotherapy support for mobility, pain management and functional rehabilitation.</p></article></div>
+    </div></section>
+    <section class="section section-light" id="contact"><div class="container"><div class="contact-band"><div><div class="eyebrow">Contact the centre</div><h2>Let's take the next step.</h2><p>Contact Advance Solutions Physiotherapy Centre for enquiries and information about physiotherapy care.</p></div><a class="button" href="mailto:meenaagrawal24@gmail.com">Email the centre ↗</a></div>
+      <div class="contact-details"><div class="contact-item"><small>Email</small><a href="mailto:meenaagrawal24@gmail.com">meenaagrawal24@gmail.com</a></div><div class="contact-item"><small>Phone</small><a href="tel:+919691368200">+91 96913 68200</a></div><div class="contact-item"><small>Centre Address</small><span>2433, Sudama Nagar, Sector E, near Akanksha Hospital, Indore, Madhya Pradesh, India</span><p style="margin:12px 0 0"><a href="https://www.google.com/maps?q=22%C2%B041%2729.6%22N+75%C2%B049%2739.0%22E" target="_blank" rel="noopener noreferrer">Open location in Google Maps ↗</a></p></div></div>
+    </div></section>
+  </main>
+  <footer class="container footer"><span>© <span id="year">2026</span> Advance Solutions Physiotherapy Centre. All rights reserved.</span><span>Dr. Meena Agrawal · <a href="#top">Back to top ↑</a></span></footer>
+</div>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
