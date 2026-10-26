@@ -1,0 +1,8 @@
+{
+  "enabled": false,
+  "text_hi": "29 और 30 अक्टूबर को सेंटर बंद रहेगा। 31 अक्टूबर से सामान्य समय पर खुलेगा।",
+  "text_en": "The centre will be closed on 29 and 30 October. We reopen on 31 October at the usual time.",
+  "closed_from": "2026-10-29",
+  "closed_to": "2026-10-30",
+  "hide_after": "2026-10-31"
+}

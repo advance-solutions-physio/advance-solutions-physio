@@ -63,6 +63,7 @@
     {"@type":"Question","name":"What is dry needling?","acceptedAnswer":{"@type":"Answer","text":"Dry needling uses fine needles to work on painful trigger points in muscles. It is used only when suitable after assessment."}},
     {"@type":"Question","name":"What are cupping and taping therapy?","acceptedAnswer":{"@type":"Answer","text":"Cupping uses cups on the skin to help relax tight muscles, and taping uses special tape to support muscles and joints."}},
     {"@type":"Question","name":"How many sessions will I need?","acceptedAnswer":{"@type":"Answer","text":"It depends on your condition. After assessment, Dr. Meena explains how many sessions may be needed."}},
+    {"@type":"Question","name":"Is home visit available?","acceptedAnswer":{"@type":"Answer","text":"Home visits can be requested for patients who find it difficult to come to the centre. Choose Home visit in the booking form and add your address. The centre will confirm availability, timing and charges on WhatsApp."}},
     {"@type":"Question","name":"How do I book an appointment?","acceptedAnswer":{"@type":"Answer","text":"Call or WhatsApp +91 96913 68200, or fill in the form on this page. The centre is open Monday to Saturday, 12 pm to 7 pm, and closed on Sunday."}},
     {"@type":"Question","name":"Where is the centre?","acceptedAnswer":{"@type":"Answer","text":"2433, Sudama Nagar, Sector E, near Akanksha Hospital, Indore, Madhya Pradesh."}}
   ]
@@ -118,6 +119,11 @@
   .btn-ghost{border-color:var(--brand);color:var(--brand);background:transparent}
   .btn-ghost:hover{background:var(--soft)}
   .nav .btn{padding:9px 18px;font-size:.88rem}
+
+  /* Notice bar */
+  .notice{background:#fff3e6;border-bottom:1px solid #f1d2b3;color:#7a3e10;font-weight:500;font-size:.93rem}
+  .notice .wrap{display:flex;gap:10px;align-items:flex-start;padding-top:11px;padding-bottom:11px}
+  .notice .nb{flex:none;font-size:1.05rem;line-height:1.5}
 
   /* Hero */
   .hero{padding:64px 0 52px;position:relative;overflow:hidden}
@@ -306,6 +312,15 @@
   .field textarea{min-height:84px;resize:vertical}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .form .btn{width:100%;margin-top:4px}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .segopt{position:relative;margin:0!important;cursor:pointer}
+  .segopt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+  .segopt>span{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;padding:12px 10px;border:1.5px solid var(--line);border-radius:12px;font-weight:600;font-size:.92rem;color:var(--ink);background:#fff;transition:border-color .2s,background .2s,color .2s}
+  .segopt input:checked+span{border-color:var(--brand);background:var(--soft);color:var(--brand);box-shadow:0 0 0 3px rgba(15,92,84,.10)}
+  .segopt input:focus-visible+span{outline:2px solid var(--brand);outline-offset:2px}
+  .homenote{background:#fff3e6;border:1px solid #f1d2b3;color:#7a3e10;border-radius:12px;padding:10px 12px;font-size:.85rem;margin-bottom:14px}
+  .hintline{font-size:.8rem;color:var(--muted);margin-top:6px;min-height:1em}
+  .field input[type=date]{min-height:46px}
   .err{color:#c0392b;font-size:.85rem;margin-top:10px;min-height:1.2em}
   .info{display:flex;flex-direction:column;gap:12px}
   .info a,.info .row,.hours{
@@ -391,6 +406,8 @@
     </nav>
   </div>
 </header>
+
+<div class="notice" id="notice" role="status" hidden><div class="wrap"><span class="nb" aria-hidden="true">📢</span><span><span class="en" id="noticeEn"></span><span class="hi" id="noticeHi"></span></span></div></div>
 
 <main>
   <!-- HERO -->
@@ -606,6 +623,10 @@
           <p><span class="en">It depends on your condition. After assessment, Dr. Meena explains how many sessions may be needed.</span><span class="hi">यह आपकी समस्या पर निर्भर करता है। जाँच के बाद डॉ. मीना बताती हैं कि कितने सेशन की ज़रूरत पड़ सकती है।</span></p>
         </details>
         <details>
+          <summary><span class="en">Is home visit available?</span><span class="hi">क्या घर पर आकर इलाज मिलता है?</span></summary>
+          <p><span class="en">Yes, home visits can be requested for patients who find it difficult to come to the centre. Choose "Home visit" in the booking form and add your address. The centre will confirm availability, timing and charges on WhatsApp.</span><span class="hi">जी हाँ, जिन मरीज़ों को सेंटर आने में परेशानी होती है उनके लिए घर पर विज़िट का अनुरोध किया जा सकता है। बुकिंग फ़ॉर्म में "घर पर विज़िट" चुनें और अपना पता लिखें। उपलब्धता, समय और शुल्क की पुष्टि सेंटर WhatsApp पर करेगा।</span></p>
+        </details>
+        <details>
           <summary><span class="en">How do I book an appointment?</span><span class="hi">अपॉइंटमेंट कैसे बुक करें?</span></summary>
           <p><span class="en">Call or WhatsApp +91 96913 68200, or fill in the form on this page. The centre is open Monday to Saturday, 12 pm to 7 pm, and closed on Sunday.</span><span class="hi">+91 96913 68200 पर कॉल या WhatsApp करें, या इस पेज का फ़ॉर्म भरें। सेंटर सोमवार से शनिवार, दोपहर 12 से शाम 7 बजे तक खुला रहता है, रविवार बंद।</span></p>
         </details>
@@ -630,7 +651,14 @@
     <div class="contact-grid">
       <form class="form reveal" id="book" novalidate>
         <h3><span class="en">Book an appointment</span><span class="hi">अपॉइंटमेंट बुक करें</span></h3>
-        <p class="fs"><span class="en">Mon–Sat · 12 pm to 7 pm</span><span class="hi">सोम–शनि · दोपहर 12 से शाम 7 बजे</span></p>
+        <p class="fs"><span class="en">Mon–Sat · 12 pm to 7 pm. Pick a date and time; the centre will confirm on WhatsApp.</span><span class="hi">सोम–शनि · दोपहर 12 से शाम 7 बजे। तारीख और समय चुनें, सेंटर WhatsApp पर पुष्टि करेगा।</span></p>
+        <div class="field">
+          <label id="vtLabel"><span class="en">Visit type</span><span class="hi">विज़िट का प्रकार</span></label>
+          <div class="seg" role="radiogroup" aria-labelledby="vtLabel">
+            <label class="segopt"><input type="radio" name="vt" value="clinic" checked><span>🏥 <span class="en">At the centre</span><span class="hi">सेंटर पर</span></span></label>
+            <label class="segopt"><input type="radio" name="vt" value="home"><span>🏠 <span class="en">Home visit</span><span class="hi">घर पर विज़िट</span></span></label>
+          </div>
+        </div>
         <div class="field">
           <label for="fName"><span class="en">Your name</span><span class="hi">आपका नाम</span></label>
           <input id="fName" name="name" type="text" autocomplete="name" data-ph-en="Full name" data-ph-hi="पूरा नाम" required>
@@ -641,8 +669,22 @@
             <input id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" data-ph-en="10-digit mobile" data-ph-hi="10 अंकों का मोबाइल" required>
           </div>
           <div class="field">
-            <label for="fTime"><span class="en">Preferred day / time</span><span class="hi">पसंदीदा दिन / समय</span></label>
-            <input id="fTime" name="time" type="text" data-ph-en="e.g. Tuesday 4 pm" data-ph-hi="जैसे मंगलवार शाम 4 बजे">
+            <label for="fDate"><span class="en">Preferred date</span><span class="hi">पसंदीदा तारीख</span></label>
+            <input id="fDate" name="date" type="date" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fSlot"><span class="en">Time slot</span><span class="hi">समय चुनें</span></label>
+          <select id="fSlot" name="slot" required>
+            <option value="" data-en="Select a date first" data-hi="पहले तारीख चुनें"></option>
+          </select>
+          <div class="hintline" id="slotHint"></div>
+        </div>
+        <div id="addrWrap" hidden>
+          <p class="homenote"><span class="en">Home visit availability, timing and charges are confirmed by the centre on WhatsApp.</span><span class="hi">घर पर विज़िट की उपलब्धता, समय और शुल्क की पुष्टि सेंटर WhatsApp पर करेगा।</span></p>
+          <div class="field">
+            <label for="fAddr"><span class="en">Home address / area</span><span class="hi">घर का पता / इलाका</span></label>
+            <textarea id="fAddr" name="addr" style="min-height:70px" data-ph-en="House no., colony, landmark, Indore" data-ph-hi="मकान नं., कॉलोनी, लैंडमार्क, इंदौर"></textarea>
           </div>
         </div>
         <div class="field">
@@ -762,7 +804,7 @@ var CONFIG = {
   function setLang(l){
     doc.setAttribute('lang',l);
     try{localStorage.setItem('lang',l);}catch(e){}
-    applyAttrs(); updateStatus();
+    applyAttrs(); updateStatus(); if(window.rebuildSlots){window.rebuildSlots();}
   }
   document.getElementById('langBtn').addEventListener('click',function(){setLang(lang()==='en'?'hi':'en');});
 
@@ -782,7 +824,8 @@ var CONFIG = {
       var wd='',h=0,mi=0;
       parts.forEach(function(p){if(p.type==='weekday')wd=p.value;if(p.type==='hour')h=parseInt(p.value,10)%24;if(p.type==='minute')mi=parseInt(p.value,10);});
       var mins=h*60+mi, msg, cls;
-      if(wd==='Sun'){msg=s.sun;cls='closed';}
+      if(window.NOTICE_CLOSED){msg=(l==='en')?'Closed today · see notice above':'आज सेंटर बंद है · ऊपर सूचना देखें';cls='closed';}
+      else if(wd==='Sun'){msg=s.sun;cls='closed';}
       else if(mins>=720&&mins<1140){msg=s.open(1140-mins);cls='open';}
       else if(mins<720){msg=s.before;cls='closed';}
       else{msg=(wd==='Sat')?s.sat:s.after;cls='closed';}
@@ -791,27 +834,89 @@ var CONFIG = {
   }
   setInterval(updateStatus,60000);
 
-  /* ---------- Booking form -> WhatsApp ---------- */
+  /* ---------- Booking form: calendar + time slots -> WhatsApp ---------- */
   var MSG={
-    en:{err:'Please enter your name and a valid 10-digit phone number.',
-        hello:'Hello Dr. Meena, I would like to book a physiotherapy appointment.',n:'Name',p:'Phone',pr:'Problem',t:'Preferred day/time',d:'Details'},
-    hi:{err:'कृपया अपना नाम और सही 10 अंकों का फ़ोन नंबर लिखें।',
-        hello:'नमस्ते डॉ. मीना, मैं फिजियोथेरेपी के लिए अपॉइंटमेंट लेना चाहता/चाहती हूँ।',n:'नाम',p:'फ़ोन',pr:'समस्या',t:'पसंदीदा दिन/समय',d:'विवरण'}
+    en:{hello:'Hello Dr. Meena, I would like to book a physiotherapy appointment.',n:'Name',p:'Phone',pr:'Problem',dt:'Preferred date',tm:'Time slot',d:'Details',
+        eName:'Please enter your name and a valid 10-digit phone number.',eAddr:'Please enter your home address / area for the home visit.',vt:'Visit type',vc:'At the centre',vh:'Home visit',ad:'Address',eDate:'Please choose a date.',eSlot:'Please choose a time slot.',
+        eSun:'The centre is closed on Sundays. Please choose another date.',eClosed:'The centre is closed on this date (see notice above). Please choose another date.',
+        eNone:'No slots left today. Please choose another date.',ePast:'Please choose today or a later date.',
+        pick:'Select a time',first:'Select a date first',none:'No slots available',hint:'Slots are 30 minutes, 12:00 PM to 7:00 PM'},
+    hi:{hello:'नमस्ते डॉ. मीना, मैं फिजियोथेरेपी के लिए अपॉइंटमेंट लेना चाहता/चाहती हूँ।',n:'नाम',p:'फ़ोन',pr:'समस्या',dt:'पसंदीदा तारीख',tm:'समय',d:'विवरण',
+        eName:'कृपया अपना नाम और सही 10 अंकों का फ़ोन नंबर लिखें।',eAddr:'घर पर विज़िट के लिए कृपया अपना पता / इलाका लिखें।',vt:'विज़िट का प्रकार',vc:'सेंटर पर',vh:'घर पर विज़िट',ad:'पता',eDate:'कृपया तारीख चुनें।',eSlot:'कृपया समय चुनें।',
+        eSun:'रविवार को सेंटर बंद रहता है। कृपया दूसरी तारीख चुनें।',eClosed:'इस तारीख को सेंटर बंद है (ऊपर सूचना देखें)। कृपया दूसरी तारीख चुनें।',
+        eNone:'आज के लिए कोई समय बाकी नहीं है। कृपया दूसरी तारीख चुनें।',ePast:'कृपया आज या आगे की तारीख चुनें।',
+        pick:'समय चुनें',first:'पहले तारीख चुनें',none:'कोई समय उपलब्ध नहीं',hint:'हर स्लॉट 30 मिनट का, दोपहर 12:00 से शाम 7:00 तक'}
   };
-  document.getElementById('book').addEventListener('submit',function(e){
+  var g=function(id){return document.getElementById(id);};
+  function istNow(){
+    var o={};
+    new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false})
+      .formatToParts(new Date()).forEach(function(p){o[p.type]=p.value;});
+    return {date:o.year+'-'+o.month+'-'+o.day, mins:(parseInt(o.hour,10)%24)*60+parseInt(o.minute,10)};
+  }
+  function addDays(ds,n){var d=new Date(ds+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
+  function isSunday(ds){return new Date(ds+'T00:00:00Z').getUTCDay()===0;}
+  function isClosedDate(ds){var r=window.NOTICE_RANGE;return !!(r&&ds>=r[0]&&ds<=r[1]);}
+  function fmtTime(mins){var h=Math.floor(mins/60),m=mins%60,ap=h>=12?'PM':'AM',h12=h%12||12;return h12+':'+(m<10?'0':'')+m+' '+ap;}
+  function fmtDate(ds){
+    try{return new Intl.DateTimeFormat(lang()==='en'?'en-IN':'hi-IN',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(ds+'T00:00:00Z'));}
+    catch(e){return ds;}
+  }
+  function setErr(t){g('formErr').textContent=t||'';}
+  function buildSlots(){
+    var m=MSG[lang()], sel=g('fSlot'), ds=g('fDate').value, prev=sel.value;
+    sel.innerHTML='';
+    function opt(v,t,dis){var o=document.createElement('option');o.value=v;o.textContent=t;if(dis)o.disabled=true;sel.appendChild(o);return o;}
+    g('slotHint').textContent=m.hint;
+    if(!ds){opt('',m.first);return;}
+    var now=istNow();
+    if(ds<now.date){opt('',m.none);setErr(m.ePast);return;}
+    if(isSunday(ds)){opt('',m.none);setErr(m.eSun);return;}
+    if(isClosedDate(ds)){opt('',m.none);setErr(m.eClosed);return;}
+    var list=[];
+    for(var t=720;t<=1110;t+=30){ if(ds>now.date||t>=now.mins+30){list.push(t);} }
+    if(!list.length){opt('',m.none);setErr(m.eNone);return;}
+    setErr('');
+    opt('',m.pick);
+    list.forEach(function(t){opt(fmtTime(t),fmtTime(t)+' – '+fmtTime(t+30));});
+    for(var i=0;i<sel.options.length;i++){ if(prev&&sel.options[i].value===prev){sel.selectedIndex=i;break;} }
+  }
+  function initDate(){
+    var d=g('fDate'), now=istNow();
+    d.min=now.date; d.max=addDays(now.date,60);
+    d.addEventListener('change',buildSlots);
+    buildSlots();
+  }
+  window.rebuildSlots=buildSlots;
+  g('book').addEventListener('submit',function(e){
     e.preventDefault();
-    var l=lang(), m=MSG[l], f=e.target, err=document.getElementById('formErr');
-    var g=function(id){return document.getElementById(id);};
+    var m=MSG[lang()];
     var name=g('fName').value.trim(), phone=g('fPhone').value.replace(/\D/g,'').replace(/^(91|0)(?=\d{10}$)/,'');
-    if(!name||phone.length!==10){err.textContent=m.err;return;}
-    err.textContent='';
-    var lines=[m.hello,'',m.n+': '+name,m.p+': '+phone];
+    var ds=g('fDate').value, slot=g('fSlot').value, now=istNow();
+    if(!name||phone.length!==10){setErr(m.eName);return;}
+    if(!ds){setErr(m.eDate);return;}
+    if(ds<now.date){setErr(m.ePast);return;}
+    if(isSunday(ds)){setErr(m.eSun);return;}
+    if(isClosedDate(ds)){setErr(m.eClosed);return;}
+    if(!slot){setErr(m.eSlot);return;}
+    var home=document.querySelector('input[name=vt]:checked').value==='home', addr=g('fAddr').value.trim();
+    if(home&&addr.length<5){setErr(m.eAddr);return;}
+    setErr('');
+    var lines=[m.hello,'',m.n+': '+name,m.p+': '+phone,m.vt+': '+(home?m.vh:m.vc)];
+    if(home)lines.push(m.ad+': '+addr);
+    lines.push(m.dt+': '+fmtDate(ds),m.tm+': '+slot);
     var sel=g('fProblem');
     if(sel.selectedIndex>0){lines.push(m.pr+': '+sel.options[sel.selectedIndex].textContent);}
-    if(g('fTime').value.trim())lines.push(m.t+': '+g('fTime').value.trim());
     if(g('fMsg').value.trim())lines.push(m.d+': '+g('fMsg').value.trim());
     window.open('https://wa.me/919691368200?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
   });
+  function toggleVisit(){
+    var home=document.querySelector('input[name=vt]:checked').value==='home';
+    g('addrWrap').hidden=!home;
+  }
+  document.querySelectorAll('input[name=vt]').forEach(function(r){r.addEventListener('change',toggleVisit);});
+  toggleVisit();
+  initDate();
 
   /* ---------- Optional sections from CONFIG ---------- */
   function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
@@ -852,6 +957,26 @@ var CONFIG = {
       setTimeout(function(){var n=document.getElementById('fName'); if(n){try{n.focus({preventScroll:true});}catch(e){n.focus();}}},600);
     });
   });
+
+  /* ---------- Notice (edit notice.json to show a holiday / timing change) ---------- */
+  function todayIST(){
+    var parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()), o={};
+    parts.forEach(function(p){o[p.type]=p.value;}); return o.year+'-'+o.month+'-'+o.day;
+  }
+  try{
+    fetch('notice.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(n){
+      if(!n||n.enabled!==true)return;
+      var t=todayIST();
+      if(n.hide_after&&t>n.hide_after)return;
+      var en=(n.text_en||'').trim(), hi=(n.text_hi||'').trim();
+      if(!en&&!hi)return;
+      document.getElementById('noticeEn').textContent=en||hi;
+      document.getElementById('noticeHi').textContent=hi||en;
+      document.getElementById('notice').hidden=false;
+      if(n.closed_from&&n.closed_to&&t>=n.closed_from&&t<=n.closed_to){window.NOTICE_CLOSED=true;updateStatus();}
+      if(n.closed_from&&n.closed_to){window.NOTICE_RANGE=[n.closed_from,n.closed_to];if(window.rebuildSlots){window.rebuildSlots();}}
+    }).catch(function(){});
+  }catch(e){}
 
   /* ---------- Scroll reveal ---------- */
   var els=document.querySelectorAll('.reveal');
