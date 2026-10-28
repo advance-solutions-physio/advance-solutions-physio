@@ -177,6 +177,14 @@
   .about-text p b{color:var(--ink)}
 
   .about-single .about-text{max-width:760px}
+  .about-doc{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+  .about-doc .about-text{max-width:none}
+  .doc-photo{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:#fff;border:1px solid var(--line)}
+  .doc-photo img{display:block;width:100%;height:auto}
+  .doc-photo figcaption{padding:14px 18px;font-size:.92rem;color:var(--muted);border-top:1px solid var(--line)}
+  .doc-photo figcaption b{display:block;color:var(--ink);font-size:1.02rem}
+  .doc-avatar{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.35);display:block;margin-bottom:16px}
+  @media(max-width:900px){.about-doc{grid-template-columns:1fr;gap:28px}.doc-photo{max-width:460px}}
 
   /* Cards */
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -432,6 +440,7 @@
       </div>
 
       <aside class="hero-card reveal" aria-label="Dr. Meena Agrawal">
+        <img class="doc-avatar" src="photos/dr-meena-avatar.jpg" width="76" height="76" alt="Dr. Meena Agrawal">
         <div class="big">12<sup>+</sup></div>
         <p><span class="en">Years of professional physiotherapy experience</span><span class="hi">वर्षों का फिजियोथेरेपी अनुभव</span></p>
         <hr>
@@ -444,7 +453,8 @@
 
   <!-- ABOUT -->
   <section id="about" class="alt">
-    <div class="wrap about-single">
+    <div class="wrap about-doc">
+      <figure class="doc-photo reveal"><img src="photos/dr-meena.jpg" width="768" height="674" alt="Dr. Meena Agrawal, Consultant Physiotherapist, Indore" loading="lazy"><figcaption><b><span class="en">Dr. Meena Agrawal</span><span class="hi">डॉ. मीना अग्रवाल</span></b><span class="en">Consultant Physiotherapist · 12+ years</span><span class="hi">कंसल्टेंट फिजियोथेरेपिस्ट · 12+ वर्ष का अनुभव</span></figcaption></figure>
       <div class="about-text reveal">
         <div class="tag"><span class="en">About the centre</span><span class="hi">सेंटर के बारे में</span></div>
         <h2><span class="en">Experienced care. Thoughtful treatment.</span><span class="hi">अनुभवी देखभाल, सोच-समझकर इलाज।</span></h2>
